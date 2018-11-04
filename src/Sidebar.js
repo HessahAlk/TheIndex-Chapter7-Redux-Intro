@@ -20,4 +20,9 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+const mapStateToProps = state => {
+  return {
+      new_author_id: state.new_author_id
+  }
+}
+export default connect() Sidebar;

@@ -3,36 +3,34 @@ import React, { Component } from "react";
 // Data
 import authors from "./data";
 
-// Components
+import { connect } from "react-redux";
 import Sidebar from "./Sidebar";
 import AuthorsList from "./AuthorsList";
+// Components
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       authors: authors,
-      newAuthorId: 1
+      new_author_id: 1
     };
     this.addAuthor = this.addAuthor.bind(this);
   }
 
   addAuthor() {
-    let newAuthor = {
+    let new_author = {
       first_name: "Author",
-      last_name: `${this.state.newAuthorId}`,
-      imageUrl:
-        "https://www.netz.de/images/2016-11-21-firefox-focus-header-58cfedd908c25_500_300.jpg",
+      last_name: `${this.state.new_author_id}`,
       books: [
         {
-          title: "Anonymous book",
-          color: "mysterious color"
+          title: "New Book",
         }
       ]
     };
     this.setState({
-      authors: this.state.authors.concat(newAuthor),
-      newAuthorId: this.state.newAuthorId + 1
+      authors: this.state.authors.concat(new_author),
+      new_author_id: this.state.new_author_id + 1
     });
   }
   render() {
@@ -51,4 +49,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    auths: state.authors
+  };
+};
+export default connect(mapStateToProps)(App);
